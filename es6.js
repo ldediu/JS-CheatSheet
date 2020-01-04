@@ -195,3 +195,72 @@ export class Helper {         //now we can import this class into another js fil
         console.log(message);
     }
 }
+
+//-------------------------------------------------------------------------------------------
+// 14. Getters and Setters
+//-------------------------------------------------------------------------------------------
+
+class Person {
+    constructor(name) {
+        this._name = name;
+    }
+    get name() {
+        return this._name.toUpperCase();
+    }
+    set name (value) {
+        if (value.length > 2) {
+            this._name = value;
+        }
+        else 
+            console.log("Rejected");
+    }
+}
+
+let person = new Person ('Max');
+console.log(person.name);
+
+//-------------------------------------------------------------------------------------------
+// 15. Symbols
+//-------------------------------------------------------------------------------------------
+
+let symbol = Symbol('debug');
+let anotherSymbol = Symbol('debug');
+console.log(typeof symbol);              //symbol
+console.log(symbol.toString());          //Symbol(debug)
+console.log(symbol == anotherSymbol)     //false
+
+let obj = {
+    name: 'max',
+    [symbol]: 22   //refers to a var 
+}
+console.log(obj)          //object Object:{name: "max"}
+
+//-------------------------------------------------------------------------------------------
+// 16. Maps
+//-------------------------------------------------------------------------------------------
+
+let cardAce = {
+    name: 'Ace of Spades'
+};
+
+let cardKing = {
+    name: 'King of Clubs'
+};
+
+let deck = new Map();
+deck.set('as', cardAce);
+deck.set('kc', cardKing);
+
+console.log(deck.get('as'));
+
+for (key of deck.keys()) {
+    console.log(key);
+}
+for (value of deck.values()) {
+    console.log(value);
+}
+for (entry of deck) {
+    console.log(entry);  //shows whole thing
+}
+
+deck.clear();
